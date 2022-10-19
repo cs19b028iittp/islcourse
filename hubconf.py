@@ -67,7 +67,7 @@ training_data, test_data = load_data();
 train_dataloader, test_dataloader = create_dataloaders(training_data, test_data, batch_size=64)
 
 def get_model_advanced(train_data_loader=train_dataloader, n_epochs=10,lr=1e-4,config=None):
-  model = get_model();
+  model = get_model(train_data_loader=train_dataloader, n_epochs=10);
 
   # To train a model, we need a loss function and an optimizer.
   optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
