@@ -31,7 +31,7 @@ def get_model(train_data_loader, n_epochs):
   return model
 
 def get_model_advanced(train_data_loader, n_epochs, lr, config):
-  model = get_model();
+  model = get_model(train_data_loader, n_epochs);
   
   optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
   size = len(train_data_loader.dataset)
@@ -51,6 +51,5 @@ def get_model_advanced(train_data_loader, n_epochs, lr, config):
       if batch % 100 == 0:
           loss, current = loss.item(), batch * len(X)
           print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
-          
-      return model
+  return model
     
