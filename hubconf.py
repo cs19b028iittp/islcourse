@@ -2,6 +2,7 @@ import torch
 from torch import nn
 import torch.optim as optim
 from sklearn.datasets import make_blobs, make_circles, load_digits
+from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from sklearn.linear_model import LogisticRegression
