@@ -62,5 +62,5 @@ def get_metrics(model1=None,X=None,y=None):
   prec=precision_score(y, ypred,average='macro')
   rec=recall_score(y, ypred,average='macro')
   f1=f1_score(y, ypred,average='macro')
-  auc = roc_auc_score(y,y_pred,average='macro',multi_class='ovr')
+  auc = roc_auc_score(y, model1.predict_proba(X), average='macro', multi_class='ovr')
   return acc, prec, rec, f1, auc
