@@ -14,6 +14,7 @@ from sklearn.model_selection import cross_validate
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import torch.optim as optim
 
 
 ###### PART 1 ######
