@@ -64,3 +64,27 @@ def get_metrics(model1=None,X=None,y=None):
   f1=f1_score(y, y_pred,average='macro')
   auc = roc_auc_score(y, model1.predict_proba(X), average='macro', multi_class='ovr')
   return acc, prec, rec, f1, auc
+
+
+def get_paramgrid_lr():
+  lr_param_grid = {'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000], "penalty":["l1","l2"] }
+  return lr_param_grid
+
+def get_paramgrid_rf():
+  rf_param_grid = {"n_estimators": [1, 10, 100], "criterion": ["gini", "entropy"], "max_depth": [1, 10, None]}
+  return rf_param_grid
+
+def perform_gridsearch_cv_multimetric(model=None, param_grid=None, cv=5, X=None, y=None, metrics=['accuracy','roc_auc']):
+  
+  grid_search_cv = GridSearchCV(model1, param_grid, cv=cv, scoring=metrics, refit=False)
+  grid_search_cv.fit(X, y)
+
+  cv_results = cross_validate(model1, X, y, cv=cv, scoring=metrics)
+  
+  top1_scores = []
+  
+  for metric in metrics:
+    key = "test_" + metric
+    top1_scores.append(cv_results[key])
+    
+  return top1_scores
