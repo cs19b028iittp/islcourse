@@ -1,12 +1,10 @@
-import torch
-from torch import nn
-import torch.optim as optim
 from sklearn.datasets import make_blobs, make_circles, load_digits
-from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from sklearn.linear_model import LogisticRegression
 import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.metrics.cluster import homogeneity_score, completeness_score, v_measure_score
 
 ###### PART 1 ######
 
@@ -15,7 +13,7 @@ def get_data_blobs(n_points=100):
   return X,y
 
 def get_data_circles(n_points=100):
-  X, y = make_circles(n_samples=n_points, shuffle=True,  factor=0.3, noise=0.05, random_state=0)
+  X, y = make_circles(n_samples=n_points, shuffle=True,  factor=0.7, random_state=0)
   return X,y
 
 def get_data_mnist():
@@ -34,7 +32,6 @@ def assign_kmeans(km=None,X=None):
   return ypred
 
 def compare_clusterings(ypred_1=None,ypred_2=None):
-  h,c,v=2,3,2
   h=homogeneity_score(ypred_1,ypred_2)
   c=completeness_score(ypred_1,ypred_2)
   v=v_measure_score(ypred_1,ypred_2)
