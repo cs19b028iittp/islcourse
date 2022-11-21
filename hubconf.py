@@ -46,12 +46,12 @@ def compare_clusterings(ypred_1=None,ypred_2=None):
 ###### PART 2 ######
 
 def build_lr_model(X=None, y=None):
-  lr_model = LogisticRegression(random_state=0, solver='liblinear')
+  lr_model = LogisticRegression(random_state=0, solver='liblinear', fit_intercept=False)
   lr_model.fit(X,y)
   return lr_model
 
 def build_rf_model(X=None, y=None):
-  rf_model = RandomForestClassifier(max_depth=5, random_state=0)
+  rf_model = RandomForestClassifier(random_state=400)
   rf_model.fit(X,y)
   return rf_model
 
