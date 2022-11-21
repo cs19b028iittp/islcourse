@@ -87,6 +87,7 @@ def perform_gridsearch_cv_multimetric(model1=None, param_grid=None, cv=5, X=None
   for i in range(len(metrics)):
     try:
       top1_scores[i]=grid_search_cv.scorer_[metrics[i]](grid_search_cv,X,y)
+      print('******##$$%%%')
     except:
       pass
   return top1_scores
