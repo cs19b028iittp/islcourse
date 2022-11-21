@@ -55,9 +55,9 @@ def build_rf_model(X=None, y=None):
   rf_model.fit(X,y)
   return rf_model
 
-def get_metrics(model1=None,X=None,y=None):
+def get_metrics(model=None,X=None,y=None):
   acc, prec, rec, f1, auc = 0,0,0,0,0
-  y_pred = model1.predict(X)
+  y_pred = model.predict(X)
   acc = accuracy_score(y,y_pred)
   prec=precision_score(y, ypred,average='macro')
   rec=recall_score(y, ypred,average='macro')
