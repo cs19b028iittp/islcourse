@@ -88,21 +88,19 @@ def perform_gridsearch_cv_multimetric(model1=None, param_grid=None, cv=5, X=None
 
   #cv_results = cross_validate(model1, X, y, cv=cv, scoring=metrics)
   
-  top1_scores = []#[0.0 for i in range(len(metrics))]
+  top1_scores = []
   
-  for scoring in metrics:
-    grid_search_cv = GridSearchCV(model1,param_grid, cv=cv, scoring=scoring)
-    grid_search_cv.fit(X,y)
-    top1_scores.append(grid_search_cv.best_score_)
+  # for scoring in metrics:
+#     grid_search_cv = GridSearchCV(model1,param_grid, cv=cv, scoring=scoring)
+#     grid_search_cv.fit(X,y)
+#     top1_scores.append(grid_search_cv.best_score_)
+
+#   return top1_scores
+
+  for metric in metrics:
+    top1_scores.append(grid_search_cv.cv_results_[f"mean_test_{metric}"][0])
 
   return top1_scores
-  #for i in range(len(metrics)):
-   # try:
-    #  top1_scores[i]=grid_search_cv.scorer_[metrics[i]](grid_search_cv,X,y)
-     # print('******##$$%%%')
-    #except:
-     # pass
-  #return top1_scores
 
 
   
