@@ -82,21 +82,13 @@ def get_paramgrid_rf():
   return rf_param_grid
 
 def perform_gridsearch_cv_multimetric(model1=None, param_grid=None, cv=5, X=None, y=None, metrics=['accuracy','roc_auc']):
-  
   top1_scores = []
-  
   for scoring in metrics:
     grid_search_cv = GridSearchCV(model1,param_grid, cv=cv, scoring=scoring)
     grid_search_cv.fit(X,y)
     top1_scores.append(grid_search_cv.best_score_)
-
   return top1_scores
 
-
-
-
-  
-  
 class MyNN(nn.Module):
   def __init__(self,inp_dim=64,hid_dim=13,num_classes=10):
     super(MyNN,self).__init__()
