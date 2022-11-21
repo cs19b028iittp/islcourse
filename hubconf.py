@@ -84,11 +84,11 @@ def perform_gridsearch_cv_multimetric(model1=None, param_grid=None, cv=5, X=None
   cv_results = cross_validate(model1, X, y, cv=cv, scoring=metrics)
   
   top1_scores = [0.0 for i in range(len(metrics))]
-    for i in range(len(metrics)):
-      try:
-        top1_scores[i]=grid_search_cv.scorer_[metrics[i]](grid_search_cv,X,y)
-      except:
-        pass
+  for i in range(len(metrics)):
+    try:
+      top1_scores[i]=grid_search_cv.scorer_[metrics[i]](grid_search_cv,X,y)
+    except:
+      pass
   return top1_scores
 
       
