@@ -46,7 +46,7 @@ def compare_clusterings(ypred_1=None,ypred_2=None):
 ###### PART 2 ######
 
 def build_lr_model(X=None, y=None):
-  lr_model = LogisticRegression(random_state=0)
+  lr_model = LogisticRegression(random_state=0, solver='liblinear')
   lr_model.fit(X,y)
   return lr_model
 
