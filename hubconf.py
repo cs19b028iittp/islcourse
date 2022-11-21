@@ -91,7 +91,7 @@ def perform_gridsearch_cv_multimetric(model1=None, param_grid=None, cv=5, X=None
   top1_scores = []#[0.0 for i in range(len(metrics))]
   
   for scoring in metrics:
-    grid_search_cv = GridSearchCV(model,param_grid, cv=cv, scoring=scoring)
+    grid_search_cv = GridSearchCV(model1,param_grid, cv=cv, scoring=scoring)
     grid_search_cv.fit(X,y)
     top1_scores.append(grid_search_cv.best_score_)
 
@@ -149,48 +149,48 @@ class MyNN(nn.Module):
     
     return lval
     
-  def get_mynn(inp_dim=64,hid_dim=13,num_classes=10):
-    print("hello1")
-    mynn = MyNN(inp_dim,hid_dim,num_classes)
-    print("hello2")
-    mynn.double()
-    print("hello3")
-    return mynn
+def get_mynn(inp_dim=64,hid_dim=13,num_classes=10):
+  print("hello1")
+  mynn = MyNN(inp_dim,hid_dim,num_classes)
+  print("hello2")
+  mynn.double()
+  print("hello3")
+  return mynn
 
-  def get_mnist_tensor():
-    # download sklearn mnist
-    # convert to tensor
+def get_mnist_tensor():
+  # download sklearn mnist
+  # convert to tensor
 
-    X, y = load_digits(n_class=10, return_X_y=True)
-    X = torch.from_numpy(X)
-    y = torch.from_numpy(y)
-    # print(type(X))
-    # print(type(y))
-    # write your code
-    return X,y
+  X, y = load_digits(n_class=10, return_X_y=True)
+  X = torch.from_numpy(X)
+  y = torch.from_numpy(y)
+  # print(type(X))
+  # print(type(y))
+  # write your code
+  return X,y
 
-  def get_loss_on_single_point(mynn,x0,y0):
-    y_pred, xencdec = mynn(x0)
-    print(y_pred)
-    print(y_pred.shape)
-    print(xencdec)
-    # lossval = mynn.loss_fn(x0,y0,y_pred,xencdec)
-    lossval = 0
-    # the lossval should have grad_fn attribute set
-    return lossval
+def get_loss_on_single_point(mynn,x0,y0):
+  y_pred, xencdec = mynn(x0)
+  print(y_pred)
+  print(y_pred.shape)
+  print(xencdec)
+  # lossval = mynn.loss_fn(x0,y0,y_pred,xencdec)
+  lossval = 0
+  # the lossval should have grad_fn attribute set
+  return lossval
 
-  def train_combined_encdec_predictor(mynn,X,y, epochs=11):
-    # X, y are provided as tensor
-    # perform training on the entire data set (no batches etc.)
-    # for each epoch, update weights
+def train_combined_encdec_predictor(mynn,X,y, epochs=11):
+  # X, y are provided as tensor
+  # perform training on the entire data set (no batches etc.)
+  # for each epoch, update weights
 
-    optimizer = optim.SGD(mynn.parameters(), lr=0.01)
+  optimizer = optim.SGD(mynn.parameters(), lr=0.01)
 
-    for i in range(epochs):
-      optimizer.zero_grad()
-      ypred, Xencdec = mynn(X)
-      lval = mynn.loss_fn(X,y,ypred,Xencdec)
-      lval.backward()
-      optimzer.step()
+  for i in range(epochs):
+    optimizer.zero_grad()
+    ypred, Xencdec = mynn(X)
+    lval = mynn.loss_fn(X,y,ypred,Xencdec)
+    lval.backward()
+    optimzer.step()
 
-    return 
+  return 
