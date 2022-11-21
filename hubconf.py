@@ -76,7 +76,7 @@ def get_paramgrid_rf():
   rf_param_grid = {"n_estimators": [1, 10, 100], "criterion": ["gini", "entropy"], "max_depth": [1, 10, None]}
   return rf_param_grid
 
-def perform_gridsearch_cv_multimetric(model1=None, param_grid=None, cv=5, X=None, y=None, metrics=['f1_micro','f1_macro','accuracy','roc_auc_ovr','roc_auc_ovo','balanced_accuracy']):
+def perform_gridsearch_cv_multimetric(model1=None, param_grid=None, cv=5, X=None, y=None, metrics=['accuracy','roc_auc']):
   
   grid_search_cv = GridSearchCV(model1, param_grid, cv=cv, scoring=metrics, refit=False)
   grid_search_cv.fit(X, y)
