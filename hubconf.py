@@ -9,6 +9,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import cross_validate
 
 
 ###### PART 1 ######
