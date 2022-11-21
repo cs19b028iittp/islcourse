@@ -11,35 +11,22 @@ import torch.optim as optim
 ###### PART 1 ######
 
 def get_data_blobs(n_points=100):
-  pass
-  # write your code here
-  # Refer to sklearn data sets
-  X, y = None
-  # write your code ...
+  X, y =  make_blobs(n_samples=n_points, centers=3, n_features=2,random_state=0)
   return X,y
 
 def get_data_circles(n_points=100):
-  pass
-  # write your code here
-  # Refer to sklearn data sets
-  X, y = None
-  # write your code ...
+  X, y = make_circles(n_samples=n_points, shuffle=True,  factor=0.3, noise=0.05, random_state=0)
   return X,y
 
 def get_data_mnist():
-  pass
-  # write your code here
-  # Refer to sklearn data sets
-  X,y = None
-  # write your code ...
+  digits = load_digits()
+  X=digits.data
+  y=digits.target
   return X,y
 
 def build_kmeans(X=None,k=10):
-  pass
-  # k is a variable, calling function can give a different number
-  # Refer to sklearn KMeans method
-  km = None # this is the KMeans object
-  # write your code ...
+  km = KMeans(n_clusters=k)
+  km.fit(X)
   return km
 
 def assign_kmeans(km=None,X=None):
