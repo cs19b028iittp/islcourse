@@ -75,30 +75,23 @@ def compare_clusterings(ypred_1=None,ypred_2=None):
 ###### PART 2 ######
 
 def build_lr_model(X=None, y=None):
-  pass
-  lr_model = LogisticRegression(random_state=0,solver='liblinear').fit(X, y)
-  # write your code...
-  # Build logistic regression, refer to sklearn
+  lr_model = LogisticRegression(random_state=0, solver='liblinear', fit_intercept=False)
+  lr_model.fit(X,y)
   return lr_model
 
 def build_rf_model(X=None, y=None):
-  pass
-  rf_model = RandomForestClassifier(max_depth=2, random_state=0).fit(X,y)
-  # write your code...
-  # Build Random Forest classifier, refer to sklearn
+  rf_model = RandomForestClassifier(random_state=400)
+  rf_model.fit(X,y)
   return rf_model
 
 def get_metrics(model1=None,X=None,y=None):
-  pass
-  # Obtain accuracy, precision, recall, f1score, auc score - refer to sklearn metrics
   acc, prec, rec, f1, auc = 0,0,0,0,0
   y_pred = model1.predict(X)
-  y_pred_prob = model1.predict_proba(X)
-  acc=accuracy_score(y,y_pred)
-  prec=precision_score(y,y_pred,average='macro')
-  rec=recall_score(y,y_pred,average='macro')
-  f1=f1_score(y,y_pred,average='macro')
-  auc=roc_auc_score(y,y_pred_prob,average='macro',multi_class='ovr')
+  acc = accuracy_score(y,y_pred)
+  prec=precision_score(y, y_pred,average='macro')
+  rec=recall_score(y, y_pred,average='macro')
+  f1=f1_score(y, y_pred,average='macro')
+  auc = roc_auc_score(y, model1.predict_proba(X), average='macro', multi_class='ovr')
   return acc, prec, rec, f1, auc
 
 def get_paramgrid_lr():
